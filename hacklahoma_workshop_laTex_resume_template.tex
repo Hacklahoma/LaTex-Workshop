@@ -1,0 +1,107 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+% Font settings
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{ptm}
+\renewcommand{\ttdefault}{pcr}
+
+% Custom colors
+\definecolor{darkblue}{RGB}{26, 13, 171}
+\definecolor{gray}{RGB}{128, 128, 128}
+
+% Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    urlcolor=darkblue
+}
+
+% Sections
+\titleformat{\section}{\large\scshape\color{darkblue}}{}{0em}{}[\titlerule]
+
+% No indentation
+\setlength\parindent{0pt}
+
+% Ensure PDF is machine-readable
+\pdfgentounicode=1
+
+% Custom list
+\newlist{myitemize}{itemize}{1}
+\setlist[myitemize,1]{label=$\bullet$,left=0em,labelsep=1em}
+
+% Header
+\newcommand{\header}[5]{
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{\href{#1}{\Large #2}} & \textbf{Email:} \href{mailto:#3}{#3} \\
+    \href{#1}{#1} & \textbf{Mobile:} \href{tel:#4}{#4} \\
+  \end{tabular*}
+  \vspace{0.5em}
+  \textit{\small #5}
+  \vspace{0.5em}
+}
+
+% Subheading
+\newcommand{\subheading}[4]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+% Entry
+\newcommand{\entry}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\begin{document}
+
+%------ HEADING -------
+\header{http://www.example.com}{Your Name}{your.email@example.com}{+1-123-456-7890}
+
+%------ EDUCATION -------
+\section*{Education}
+\begin{itemize}[leftmargin=*]
+  \subheading{Institute A}{City, State}{Degree in Field A}{Year A--B}
+  \subheading{Institute B}{City, State}{Degree in Field B}{Year C--D}
+\end{itemize}
+
+%------ EXPERIENCE -------
+\section*{Experience}
+\begin{itemize}[leftmargin=*]
+  \subheading{Company A}{City, State}{Position A}{Year A--B}
+  \begin{myitemize}
+    \entry{Task A1}{Detailed description of task A1.}
+    \entry{Task A2}{Detailed description of task A2.}
+  \end{myitemize}
+  
+  \subheading{Company B}{City, State}{Position B}{Year C--D}
+  \begin{myitemize}
+    \entry{Task B1}{Detailed description of task B1.}
+    \entry{Task B2}{Detailed description of task B2.}
+  \end{myitemize}
+\end{itemize}
+
+%------ SKILLS -------
+\section*{Skills}
+\begin{myitemize}
+  \entry{Languages}{Java, Python, C++}
+  \entry{Tools}{Git, Docker, Kubernetes}
+\end{myitemize}
+
+%------ PROJECTS -------
+\section*{Projects}
+\begin{myitemize}
+  \entry{Project A}{Description of Project A.}
+  \entry{Project B}{Description of Project B.}
+\end{myitemize}
+
+\end{document}
